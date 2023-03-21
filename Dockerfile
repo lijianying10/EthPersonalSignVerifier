@@ -1,5 +1,5 @@
-FROM 1.20.2-bullseye AS builder
-COPY * /app
+FROM golang:1.20.2-bullseye AS builder
+COPY * /app/
 WORKDIR /app
 RUN go build -o /app/main .
 FROM ubuntu:22.04
