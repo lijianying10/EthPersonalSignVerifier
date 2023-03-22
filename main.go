@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/hex"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -25,10 +26,9 @@ func main() {
 			return
 		}
 		msgStr := strings.TrimPrefix(req.Message, "0x")
-		msg, err := hexutil.Decode(msgStr)
+		msg, err := hex.DecodeString(msgStr)
 		if err != nil {
-
-			http.Error(w, "invalid message"+err.Error(), http.StatusBadRequest)
+			http.Error(w, "invalid message: "+err.Error(), http.StatusBadRequest)
 			return
 		}
 
